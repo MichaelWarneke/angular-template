@@ -15,6 +15,6 @@
 </md-toolbar>
 
 <md-menu #appMenu="mdMenu">
-    <button md-menu-item (click)="onMenuClick.emit('action 1')"> Action 1 </button>
-    <button md-menu-item (click)="onMenuClick.emit('action 2')"> Action 2 </button>
+    <button md-menu-item (click)="onMenuClick.emit('home')" [routerLink]="['/home']"> Home </button>
+    <button md-menu-item (click)="onMenuClick.emit('something')" [routerLink]="['/something']"> Something </button>
 </md-menu>
