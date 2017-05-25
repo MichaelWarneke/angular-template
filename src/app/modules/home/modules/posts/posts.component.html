@@ -1,0 +1,28 @@
+
+<div class="container" fxLayout='row' fxLayout.xs="column">
+  <div fxFlex="25%">
+      <h2>Users</h2>
+      <md-list *ngFor="let user of users">
+        <md-list-item (click)="onSelectUser(user.id)">
+          <p md-line>{{user.username}}</p><br>
+          <md-icon md-list-icon>play_arrow</md-icon>
+          <p md-line> {{user.name}} </p>
+          <p md-line> {{user.email}} </p>
+        </md-list-item>
+        <md-divider></md-divider>
+      </md-list>
+  </div>
+  <div fxFlex fxHide.xs>
+      <h2>Posts</h2>
+      <div *ngFor="let post of posts">
+        <md-card>
+          <md-card-header>
+            <md-card-title>{{post.title}}</md-card-title>
+          </md-card-header>
+          <md-card-content>
+            <md-card-content>{{post.body}}</md-card-content>
+          </md-card-content>
+        </md-card>
+      </div>
+  </div>
+</div>
