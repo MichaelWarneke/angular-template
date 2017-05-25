@@ -1,3 +1,20 @@
-<p>
-  home works!
-</p>
+<md-sidenav-container>
+    <md-sidenav #sidenav mode="over">
+        <home-side-menu (onSideMenuClick)="sidenav.close()"></home-side-menu>
+    </md-sidenav>
+
+    <div class="my-sidenav-menu-button">
+        <button md-button (click)="sidenav.toggle()">
+            <md-icon>menu</md-icon>
+        </button>
+    </div>
+
+    <div class="my-main-content" fxLayout='row' fxLayout.xs="column">
+      <div class="my-home-list" fxFlex="25%">
+          List
+      </div>
+      <div class="my-home-details" fxFlex fxHide.xs>
+          Details
+      </div>
+    </div>
+</md-sidenav-container>
