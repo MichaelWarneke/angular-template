@@ -1,10 +1,10 @@
 <md-nav-list>
-    <a md-list-item (click)="onSideMenuClick.emit()">
+    <a md-list-item (click)="onSideMenuClick.emit()" [routerLink]="['/home/posts']">
         <md-icon md-list-icon>dns</md-icon>
-        <span md-line class="my-side-menu-line">Categories</span>
+        <span md-line class="my-side-menu-line">Posts</span>
     </a>
-    <a md-list-item (click)="onSideMenuClick.emit()">
-        <md-icon md-list-icon>description</md-icon>
-        <span md-line class="my-side-menu-line">Items</span>
+    <a md-list-item (click)="onSideMenuClick.emit()" [routerLink]="['/home/todos']">
+        <md-icon md-list-icon>today</md-icon>
+        <span md-line class="my-side-menu-line">Todos</span>
     </a>
 </md-nav-list>

@@ -1,3 +1,10 @@
-<p>
-  something works!
-</p>
+<h1>Load Http get data</h1>
+<md-list *ngFor="let post of posts">
+  <h3 md-subheader>{{post.title}}</h3>
+  <md-list-item>
+    <md-icon md-list-icon>play_arrow</md-icon>
+    <p> {{post.body}} </p>
+  </md-list-item>
+  <md-divider></md-divider>
+</md-list>
+
