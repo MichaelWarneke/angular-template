@@ -15,3 +15,7 @@ md-list-item:hover {
     background-color: lightcyan;
     cursor:pointer;
 }
+
+md-list-item.selected {
+    background-color: lightblue;
+}

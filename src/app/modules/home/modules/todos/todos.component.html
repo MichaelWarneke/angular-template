@@ -2,8 +2,8 @@
 <div class="container" fxLayout='row' fxLayout.xs="column">
   <div fxFlex="25%">
       <h2>Users</h2>
-      <md-list *ngFor="let user of users">
-        <md-list-item (click)="onSelectUser(user.id)">
+      <md-list *ngFor="let user of users| async">
+        <md-list-item (click)="onSelectUser(user.id)"  [ngClass]="{'selected' : user.id == selectedUser}">
           <p md-line>{{user.username}}</p>
           <md-icon md-list-icon>play_arrow</md-icon>
           <p md-line> {{user.name}} </p>
@@ -14,7 +14,7 @@
   </div>
   <div fxFlex fxHide.xs>
       <h2>Todos</h2>
-      <md-list *ngFor="let todo of todos">
+      <md-list *ngFor="let todo of todos| async">
         <md-list-item>
           <p md-line>{{todo.title}}</p>
           <p md-line *ngIf="todo.completed; else notCompleted">Completed</p>

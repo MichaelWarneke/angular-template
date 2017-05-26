@@ -1,3 +1,7 @@
 .logo {
     height: 30px;
 }
+
+md-toolbar {
+    height: 64px;
+}

@@ -1,6 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { PostsDbService } from "../../services/posts-db.service";
 import { Subscription } from "rxjs/Subscription";
+import { PostsService } from "app/modules/core/services/posts.service";
+import { Observable } from "rxjs/Observable";
+import { Post } from "app/models/Post";
 
 @Component({
   selector: 'app-something',
@@ -9,31 +11,17 @@ import { Subscription } from "rxjs/Subscription";
 })
 export class SomethingComponent implements OnInit, OnDestroy {
 
-  posts: any[];
-  subs: Subscription[];
+  posts: Observable<Post[]>;
 
-  constructor(private service: PostsDbService) { 
-    this.subs = new Array<Subscription>();
+  constructor(private postsService: PostsService) { 
+    this.posts = postsService.getPosts();
   }
 
   ngOnInit() {
     // Load posts
-    this.loadPosts()
+    this.postsService.loadPosts(0);
   }
 
   ngOnDestroy() {
-    this.subs.forEach(sub => sub.unsubscribe());
   }
-
-  loadPosts(){
-    // Get all comments
-    this.subs.push(this.service.getPosts()
-                .subscribe(
-                    posts => this.posts = posts, //Bind to view
-                    err => {
-                        // Log errors if any
-                        console.log(err);
-                    }));  
-  }
-
 }

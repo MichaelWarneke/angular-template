@@ -1,7 +1,10 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
+import { UsersService } from "app/modules/core/services/users.service";
+import { TodosService } from "app/modules/core/services/todos.service";
 import { Subscription } from "rxjs/Subscription";
-import { UsersDbService } from "../../../../services/users-db.service";
-import { TodosDbService } from "../../../../services/todos-db.service";
+import { Observable } from "rxjs/Observable";
+import { User } from "app/models/user";
+import { Todo } from "app/models/todo";
 
 @Component({
   selector: 'app-todos',
@@ -10,47 +13,28 @@ import { TodosDbService } from "../../../../services/todos-db.service";
 })
 export class TodosComponent implements OnInit, OnDestroy {
   
-  users: any[];
-  todos: any[];
-  subs: Subscription[];
-  
-  constructor(private userService: UsersDbService,
-              private todoService: TodosDbService) { 
-    this.subs = new Array<Subscription>();
+  users: Observable<User[]>;
+  todos: Observable<Todo[]>;
+  selectedUser: number;
+
+  constructor(private userService: UsersService,
+              private todoService: TodosService) { 
+    this.users = this.userService.getUsers();
+    this.todos = this.todoService.getTodos();
   }
 
   ngOnInit() {
     // Load users
-    this.loadUsers();
+    this.userService.loadUsers(0);
   }
 
   ngOnDestroy() {
-    this.subs.forEach(sub => sub.unsubscribe());
-  }
-  
-  loadUsers(){
-    // Get all Users
-    this.subs.push(this.userService.getUsers()
-                .subscribe(
-                    users => this.users = users, //Bind to view
-                    err => {
-                        // Log errors if any
-                        console.log(err);
-                    }));  
+
   }
 
   onSelectUser(id: number) {
-    this.loadTodos(id);
+    this.todoService.loadTodos(id);
+    this.selectedUser = id;
   }
 
-  loadTodos(id: number) {
-    // Get all Users
-    this.subs.push(this.todoService.getTodosByUser(id)
-                .subscribe(
-                    todos => this.todos = todos, //Bind to view
-                    err => {
-                        // Log errors if any
-                        console.log(err);
-                    }));  
-  }
 }

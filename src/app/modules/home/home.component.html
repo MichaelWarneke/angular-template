@@ -1,10 +1,10 @@
 <md-sidenav-container>
-    <md-sidenav #sidenav mode="over">
-        <home-side-menu (onSideMenuClick)="sidenav.close()"></home-side-menu>
+    <md-sidenav (close)="closeSidenav()" [opened]="showSidenav$ | async" mode="over">
+        <home-side-menu (onSideMenuClick)="closeSidenav()"></home-side-menu>
     </md-sidenav>
 
     <div class="my-sidenav-menu-button">
-        <button md-button (click)="sidenav.toggle()">
+        <button md-button (click)="toggleSidenav()">
             <md-icon>menu</md-icon>
         </button>
     </div>

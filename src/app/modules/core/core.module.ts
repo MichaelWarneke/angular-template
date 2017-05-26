@@ -3,13 +3,13 @@ import { HttpModule } from '@angular/http';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedModule } from "../shared/shared.module";
-import { PostsDbService } from "../../services/posts-db.service";
-import { TodosDbService } from "../../services/todos-db.service";
-import { UsersDbService } from "../../services/users-db.service";
+import { SERVICES } from "./services";
 
+import { AppStoreModule } from '../store/app-store.module';
 
 @NgModule({
   imports: [
+    AppStoreModule.forRoot(),
   ],
   exports: [
     SharedModule,
@@ -18,9 +18,7 @@ import { UsersDbService } from "../../services/users-db.service";
   ],
   declarations: [],
   providers: [
-    PostsDbService,
-    TodosDbService,
-    UsersDbService
+    SERVICES,
   ]
 })
 export class CoreModule {

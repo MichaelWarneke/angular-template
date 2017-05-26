@@ -1,7 +1,10 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Subscription } from "rxjs/Subscription";
-import { UsersDbService } from "../../../../services/users-db.service";
-import { PostsDbService } from "../../../../services/posts-db.service";
+import { UsersService } from "app/modules/core/services/users.service";
+import { PostsService } from "app/modules/core/services/posts.service";
+import { Observable } from "rxjs/Observable";
+import { User } from "app/models/user";
+import { Post } from "app/models/post";
+import { HomeService } from "app/modules/core/services/home.service";
 
 @Component({
   selector: 'app-posts',
@@ -10,48 +13,28 @@ import { PostsDbService } from "../../../../services/posts-db.service";
 })
 export class PostsComponent implements OnInit, OnDestroy {
 
-  users: any[];
-  posts: any[];
-  subs: Subscription[];
+  users: Observable<User[]>;
+  posts: Observable<Post[]>;
+  selectedUser: Observable<User>;
 
-  constructor(private userService: UsersDbService,
-              private postService: PostsDbService) { 
-    this.subs = new Array<Subscription>();
+  constructor(private userService: UsersService,
+              private postService: PostsService,
+              private homeService: HomeService) { 
+    this.users = this.userService.getUsers();
+    this.posts = this.postService.getPosts();
+    this.selectedUser = this.homeService.getSelectedUserPosts();
   }
 
   ngOnInit() {
     // Load users
-    this.loadUsers();
+    this.userService.loadUsers(0);
   }
 
   ngOnDestroy() {
-    this.subs.forEach(sub => sub.unsubscribe());
-  }
-
-  loadUsers(){
-    // Get all comments
-    this.subs.push(this.userService.getUsers()
-                .subscribe(
-                    users => this.users = users, //Bind to view
-                    err => {
-                        // Log errors if any
-                        console.log(err);
-                    }));  
   }
 
   onSelectUser(id: number) {
-    this.loadTodos(id);
-  }
-
-  loadTodos(id: number) {
-    // Get all Users
-    this.subs.push(this.postService.getPostsByUser(id)
-                .subscribe(
-                    posts => this.posts = posts, //Bind to view
-                    err => {
-                        // Log errors if any
-                        console.log(err);
-                    }));  
+    this.homeService.changeSelectedUserPosts(id);
   }
 
 }
