@@ -1,5 +1,9 @@
 
-
-<app-toolbar (onMenuClick)="onMenuSelect($event)"></app-toolbar>
-
-<router-outlet></router-outlet>
+<div fxLayout="column" fxFlex="100%">
+    <div fxFlex="64px">
+        <app-toolbar (onMenuClick)="onMenuSelect($event)"></app-toolbar>
+    </div>
+    <div fxFlex="calc(100% - 64px)">
+        <router-outlet></router-outlet>
+    </div>
+</div>
