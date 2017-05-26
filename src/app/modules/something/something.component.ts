@@ -7,7 +7,7 @@ import { Post } from "app/models/Post";
 @Component({
   selector: 'app-something',
   templateUrl: './something.component.html',
-  styleUrls: ['./something.component.css']
+  styleUrls: ['./something.component.scss']
 })
 export class SomethingComponent implements OnInit, OnDestroy {
 
