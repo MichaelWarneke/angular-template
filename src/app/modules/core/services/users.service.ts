@@ -12,11 +12,21 @@ export class UsersService {
 
   constructor(private store: Store<States.State>) { }
 
+// Http
   getUsers(): Observable<any[]>{
       return this.store.select(Reducers.getUsers);
   }
 
-  loadUsers(userId: number) {
+  loadUsers(userId?: string) {
     this.store.dispatch(new Actions.Actions.home.LoadUsersAction(userId));
+  }
+
+// Firebase
+  getFbUsers(): Observable<any[]>{
+      return this.store.select(Reducers.getFireUsers);
+  }
+
+  loadFbUsers(userId?: string) {
+    this.store.dispatch(new Actions.Actions.homeFire.LoadUsersAction(userId));
   }
 }

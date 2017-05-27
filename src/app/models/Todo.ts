@@ -1,8 +1,10 @@
 export class Todo {
 
     constructor(
-        public id: number,
-        public userId: number,
+        public $key: string,    // For Firebase
+        public id: string,      // For Http
+        public userKey: string, // For Firebase
+        public userId: string, // For Http
         public title: string,
         public completed: boolean,
     ){
@@ -13,13 +15,17 @@ export class Todo {
     }
 
     static fromJson({
+        $key,
         id,
+        userKey,
         userId,
         title,
         completed,
     }): Todo {
         return new Todo(
+            $key,
             id,
+            userKey,
             userId,
             title,
             completed);

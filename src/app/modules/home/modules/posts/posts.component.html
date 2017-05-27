@@ -3,7 +3,7 @@
   <div fxFlex="25%">
       <h2>Users</h2>
       <md-list>
-        <md-list-item  *ngFor="let user of users | async" (click)="onSelectUser(user.id)" [ngClass]="{'selected' : user.id == (selectedUser | async)?.id}">
+        <md-list-item  *ngFor="let user of users | async" (click)="onSelectUser(user.$key)" [ngClass]="{'selected' : user.$key == (selectedUser | async)?.$key}">
           <p md-line>{{user.username}}</p><br>
           <md-icon md-list-icon>play_arrow</md-icon>
           <p md-line> {{user.name}} </p>

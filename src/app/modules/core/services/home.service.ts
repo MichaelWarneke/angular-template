@@ -16,12 +16,21 @@ export class HomeService {
               
   }
 
+// Http
   getSelectedUserPosts(): Observable<User> {
     return this.store.select(Reducers.getselectedUserPosts);
   }
 
-  changeSelectedUserPosts(userId: number) {
+  changeSelectedUserPosts(userId: string) {
     this.store.dispatch(new Actions.Actions.home.ChangeSelectedUserPostsAction(userId));
   }
 
+// Firebase
+  getFbSelectedUserPosts(): Observable<User> {
+    return this.store.select(Reducers.getFireselectedUserPosts);
+  }
+
+  changeFbSelectedUserPosts(userId: string) {
+    this.store.dispatch(new Actions.Actions.homeFire.ChangeSelectedUserPostsAction(userId));
+  }
 }

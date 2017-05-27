@@ -1,0 +1,18 @@
+import { Injectable } from '@angular/core';
+import { Observable } from "rxjs/Observable";
+
+import { Post } from "app/models/post";
+import { AngularFireDatabase } from "angularfire2/database";
+
+@Injectable()
+export class PostsFbService {
+
+  constructor(private db: AngularFireDatabase) { }
+
+  getPostsByUser(key: string): Observable<Post[]>{
+    if(key && key != "") {
+      return this.db.list('/posts/' + key).map(Post.fromJsonList);
+    }
+    return null;
+  }
+}

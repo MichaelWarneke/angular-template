@@ -19,7 +19,7 @@ export class SomethingComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     // Load posts
-    this.postsService.loadPosts(0);
+    this.postsService.loadPosts(null);
   }
 
   ngOnDestroy() {

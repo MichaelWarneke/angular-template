@@ -12,11 +12,21 @@ export class TodosService {
 
   constructor(private store: Store<States.State>) { }
 
+// Http
   getTodos(): Observable<Todo[]>{
     return this.store.select(Reducers.getTodos);
   }
 
-  loadTodos(userId: number) {
+  loadTodos(userId: string) {
     this.store.dispatch(new Actions.Actions.home.LoadTodosAction(userId));
+  }
+
+// Firebase 
+  getFbTodos(): Observable<Todo[]>{
+    return this.store.select(Reducers.getFireTodos);
+  }
+
+  loadFbTodos(userId: string) {
+    this.store.dispatch(new Actions.Actions.homeFire.LoadTodosAction(userId));
   }
 }

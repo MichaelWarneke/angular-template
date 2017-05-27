@@ -8,15 +8,15 @@ export class UsersDbService {
 
   constructor(private http: Http) { }
 
-  getUsers(id?: number): Observable<User[]>{
-    return this.http.get("http://jsonplaceholder.typicode.com/users")
+  getUsers(id?: string): Observable<User[]>{
+    return this.http.get("https://jsonplaceholder.typicode.com/users")
                     .map((res:Response) => res.json())
                     .map(User.fromJsonList)
                     .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
   }
 
-  getUser(id: number): Observable<User>{
-    return this.http.get("http://jsonplaceholder.typicode.com/users/" + id)
+  getUser(id: string): Observable<User>{
+    return this.http.get("https://jsonplaceholder.typicode.com/users/" + id)
                     .map((res:Response) => res.json())
                     .map(User.fromJson)
                     .catch((error:any) => Observable.throw(error.json().error || 'Server error'));

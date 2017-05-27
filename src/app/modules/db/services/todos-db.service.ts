@@ -8,19 +8,19 @@ export class TodosDbService {
 
   constructor(private http: Http) { }
 
-  getTodos(id?: number): Observable<Todo[]>{
-    if(id && id > 0) {
+  getTodos(id?: string): Observable<Todo[]>{
+    if(id && id != "" && id !="0") {
       return this.getTodosByUser(id);
     }
     
-    return this.http.get("http://jsonplaceholder.typicode.com/todos")
+    return this.http.get("https://jsonplaceholder.typicode.com/todos")
                     .map((res:Response) => res.json())
                     .map(Todo.fromJsonList)
                     .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
   }
 
-  getTodosByUser(id: number): Observable<Todo[]>{
-    return this.http.get("http://jsonplaceholder.typicode.com/todos?userId=" +id)
+  getTodosByUser(id: string): Observable<Todo[]>{
+    return this.http.get("https://jsonplaceholder.typicode.com/todos?userId=" +id)
                     .map((res:Response) => res.json())
                     .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
   }

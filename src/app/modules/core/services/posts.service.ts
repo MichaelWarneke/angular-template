@@ -13,12 +13,21 @@ export class PostsService {
   constructor(private store: Store<States.State>) { 
               
   }
-
+// Http
   getPosts(): Observable<Post[]>{
     return this.store.select(Reducers.getPosts);
   }
 
-  loadPosts(userId: number) {
+  loadPosts(userId: string) {
     this.store.dispatch(new Actions.Actions.home.LoadPostsAction(userId));
+  }
+
+// Firebase 
+  getFbPosts(): Observable<Post[]>{
+    return this.store.select(Reducers.getFirePosts);
+  }
+
+  loadFbPosts(userId: string) {
+    this.store.dispatch(new Actions.Actions.homeFire.LoadPostsAction(userId));
   }
 }

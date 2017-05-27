@@ -20,21 +20,21 @@ export class PostsComponent implements OnInit, OnDestroy {
   constructor(private userService: UsersService,
               private postService: PostsService,
               private homeService: HomeService) { 
-    this.users = this.userService.getUsers();
-    this.posts = this.postService.getPosts();
-    this.selectedUser = this.homeService.getSelectedUserPosts();
+    this.users = this.userService.getFbUsers();
+    this.posts = this.postService.getFbPosts();
+    this.selectedUser = this.homeService.getFbSelectedUserPosts();
   }
 
   ngOnInit() {
     // Load users
-    this.userService.loadUsers(0);
+    this.userService.loadFbUsers();
   }
 
   ngOnDestroy() {
   }
 
-  onSelectUser(id: number) {
-    this.homeService.changeSelectedUserPosts(id);
+  onSelectUser(id: string) {
+    this.homeService.changeFbSelectedUserPosts(id);
   }
 
 }

@@ -10,10 +10,12 @@ import { State } from './states';
 
 import * as AppReducer from './app/app.reducers';
 import * as HomeReducer from './home/home.reducers';
+import * as HomeFireReducer from './home-firebase/home-firebase.reducers';
 
 export const reducers = {
   app: AppReducer.reducer,
   home: HomeReducer.reducer,
+  homeFire: HomeFireReducer.reducer,
 };
 
 
@@ -22,7 +24,7 @@ const productionReducer: ActionReducer<State> = combineReducers(reducers);
 
 
 export function reducer(state: any, action: any) {
-  console.log("Reducer : ", action.type);
+  console.log("Reducer : " + action.type + " payload : " + JSON.stringify(action.payload));
   if (environment.production) {
     return productionReducer(state, action);
   }
@@ -45,3 +47,13 @@ export const getTodos = createSelector(getHomeState, HomeReducer.getTodos);
 
 export const getselectedUserPosts = createSelector(getHomeState, HomeReducer.getselectedUserPosts);
 export const getselectedUserTodos = createSelector(getHomeState, HomeReducer.getselectedUserTodos);
+
+// Home Firebase
+export const getHomeFireState = (state: State) => state.homeFire;
+
+export const getFireUsers = createSelector(getHomeFireState, HomeFireReducer.getUsers);
+export const getFirePosts = createSelector(getHomeFireState, HomeFireReducer.getPosts);
+export const getFireTodos = createSelector(getHomeFireState, HomeFireReducer.getTodos);
+
+export const getFireselectedUserPosts = createSelector(getHomeFireState, HomeFireReducer.getselectedUserPosts);
+export const getFireselectedUserTodos = createSelector(getHomeFireState, HomeFireReducer.getselectedUserTodos);

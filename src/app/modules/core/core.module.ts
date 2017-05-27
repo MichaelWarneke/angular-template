@@ -6,10 +6,12 @@ import { SharedModule } from "../shared/shared.module";
 import { SERVICES } from "./services";
 
 import { AppStoreModule } from '../store/app-store.module';
+import { DbFirebaseModule } from "app/modules/db/db-firebase/db-firebase.module";
 
 @NgModule({
   imports: [
     AppStoreModule.forRoot(),
+    DbFirebaseModule.forRoot(),
   ],
   exports: [
     SharedModule,

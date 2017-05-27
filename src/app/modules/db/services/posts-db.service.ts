@@ -11,19 +11,19 @@ export class PostsDbService {
 
   constructor(private http: Http) { }
 
-  getPosts(id?: number): Observable<Post[]>{
-    if(id && id > 0) {
+  getPosts(id?: string): Observable<Post[]>{
+    if(id && id != "" && id !="0") {
       return this.getPostsByUser(id);
     }
 
-    return this.http.get("http://jsonplaceholder.typicode.com/posts")
+    return this.http.get("https://jsonplaceholder.typicode.com/posts")
                     .map((res:Response) => res.json())
                     .map(Post.fromJsonList)
                     .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
   }
 
-  getPostsByUser(id: number): Observable<Post[]>{
-    return this.http.get("http://jsonplaceholder.typicode.com/posts?userId=" +id)
+  getPostsByUser(id: string): Observable<Post[]>{
+    return this.http.get("https://jsonplaceholder.typicode.com/posts?userId=" +id)
                     .map((res:Response) => res.json())
                     .map(Post.fromJsonList)
                     .catch((error:any) => Observable.throw(error.json().error || 'Server error'));

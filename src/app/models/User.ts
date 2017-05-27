@@ -1,7 +1,8 @@
 export class User {
 
     constructor(
-        public id: number,
+        public $key: string,    // For Firebase
+        public id: string,      // For Http
         public name: string,
         public username: string,
         public email: string,
@@ -26,6 +27,7 @@ export class User {
     }
 
     static fromJson({
+        $key,
         id,
         name,
         username,
@@ -36,6 +38,7 @@ export class User {
         company,
     }): User {
         return new User(
+            $key,
             id,
             name,
             username,

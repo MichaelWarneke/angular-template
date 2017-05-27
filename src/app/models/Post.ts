@@ -1,8 +1,10 @@
 export class Post {
 
     constructor(
-        public id: number,
-        public userId: number,
+        public $key: string,    // For Firebase
+        public id: string,      // For Http
+        public userKey: string, // For Firebase
+        public userId: string, // For Http
         public title: string,
         public body: string,
     ){
@@ -13,14 +15,18 @@ export class Post {
     }
 
     static fromJson({
+        $key,
         id,
+        userKey,
         userId,
         title,
         body,
     }): Post {
 
         return new Post(
+            $key,
             id,
+            userKey,
             userId,
             title,
             body);

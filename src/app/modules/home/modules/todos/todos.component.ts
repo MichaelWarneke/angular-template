@@ -15,25 +15,26 @@ export class TodosComponent implements OnInit, OnDestroy {
   
   users: Observable<User[]>;
   todos: Observable<Todo[]>;
-  selectedUser: number;
+  selectedUser: string;
 
   constructor(private userService: UsersService,
               private todoService: TodosService) { 
-    this.users = this.userService.getUsers();
-    this.todos = this.todoService.getTodos();
+    this.users = this.userService.getFbUsers();
+    this.todos = this.todoService.getFbTodos();
+    this.selectedUser = null;
   }
 
   ngOnInit() {
     // Load users
-    this.userService.loadUsers(0);
+    this.userService.loadFbUsers();
   }
 
   ngOnDestroy() {
 
   }
 
-  onSelectUser(id: number) {
-    this.todoService.loadTodos(id);
+  onSelectUser(id: string) {
+    this.todoService.loadFbTodos(id);
     this.selectedUser = id;
   }
 
