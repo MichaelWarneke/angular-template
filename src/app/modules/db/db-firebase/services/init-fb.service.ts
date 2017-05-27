@@ -56,11 +56,11 @@ export class InitFbService {
     }
     for(let post of posts) {
       let userId = userIds.find(userId => userId.id == post.userId);
-      this.db.list('/posts/' + userId.key).push({id: post.id, userId: userId.key,title: post.title, body: post.body});
+      this.db.list('/posts').push({id: post.id, userId: userId.key,title: post.title, body: post.body});
     }
     for(let todo of todos) {
       let userId = userIds.find(userId => userId.id == todo.userId);
-      this.db.list('/todos/' + userId.key).push({id: todo.id, userId: userId.key,title: todo.title,completed: todo.completed});
+      this.db.list('/todos').push({id: todo.id, userId: userId.key,title: todo.title,completed: todo.completed});
     }
     this.Sub.unsubscribe();
   }

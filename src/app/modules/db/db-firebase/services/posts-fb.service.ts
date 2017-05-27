@@ -11,7 +11,7 @@ export class PostsFbService {
 
   getPostsByUser(key: string): Observable<Post[]>{
     if(key && key != "") {
-      return this.db.list('/posts/' + key).map(Post.fromJsonList);
+      return this.db.list('/posts', {query: { orderByChild: 'userId', equalTo: key}} ).map(Post.fromJsonList);
     }
     return null;
   }

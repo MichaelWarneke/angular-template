@@ -9,8 +9,9 @@ export class TodosFbService {
   constructor(private db: AngularFireDatabase) { }
 
   getTodosByUser(key?: string): Observable<Todo[]>{
+    console.log("getTodosByUser : " + key);
     if(key && key != "") {
-      return this.db.list('/todos/' + key).map(Todo.fromJsonList);
+      return this.db.list('/todos/', {query: { orderByChild: 'userId', equalTo: key}} ).map(Todo.fromJsonList);
     }
     return null;
   }
