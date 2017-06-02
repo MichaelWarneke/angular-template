@@ -13,7 +13,7 @@
 /.firebaserc
 /database.rules.json
 /firebase.json
-/firebase.data
+/firebase.data.ts
 
 # IDEs and editors
 /.idea

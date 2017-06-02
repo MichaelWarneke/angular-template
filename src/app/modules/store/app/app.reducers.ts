@@ -16,9 +16,14 @@ export function reducer(state = initialState, action: Actions.Actions): State {
       return Object.assign({}, state, {
         showSidenav: !state.showSidenav,
       });
+    case Actions.SHOW_SPINNER:
+      return Object.assign({}, state, {
+        showSpinner: action.payload,
+      });
     default:
       return state;
   }
 }
 
 export const getShowSidenav = (state: State) => state.showSidenav;
+export const getShowSpinner = (state: State) => state.showSpinner;

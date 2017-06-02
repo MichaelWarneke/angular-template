@@ -24,4 +24,9 @@ export class SomethingComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
   }
+
+  search(search: string) {
+    console.log("Search : " +search);
+    this.posts = this.postsService.getPosts().map(posts => posts.filter(post => post.title.includes(search)));
+  }
 }

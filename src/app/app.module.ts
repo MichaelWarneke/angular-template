@@ -8,18 +8,20 @@ import { AppComponent } from './app.component';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
 
 //Material modules necessary for root (Toolbar)
-import { MdButtonModule, MdToolbarModule, MdIconModule, MdMenuModule,MdListModule, MdSidenavModule } from '@angular/material';
+import { MdProgressBarModule, MdButtonModule, MdToolbarModule, MdIconModule, MdMenuModule,MdListModule, MdSidenavModule } from '@angular/material';
+import { WaitingSpinnerComponent } from './components/waiting-spinner/waiting-spinner.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ToolbarComponent,
+    WaitingSpinnerComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     CoreModule,
-    MdButtonModule, MdToolbarModule, MdIconModule, MdMenuModule,MdListModule, MdSidenavModule
+    MdProgressBarModule, MdButtonModule, MdToolbarModule, MdIconModule, MdMenuModule,MdListModule, MdSidenavModule
   ],
   providers: [],
   bootstrap: [AppComponent]

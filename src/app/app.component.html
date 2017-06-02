@@ -1,8 +1,9 @@
 <div fxLayout="column" fxFlex="100%">
-    <div fxFlex="64px">
+    <div fxFlex="65px">
         <app-toolbar (onMenuClick)="onMenuSelect($event)"></app-toolbar>
     </div>
-    <div fxFlex="calc(100% - 64px)">
+    <app-waiting-spinner [showSpinner]="showSpinner | async"></app-waiting-spinner>
+    <div fxFlex="calc(100% - 65px)">
         <router-outlet></router-outlet>
     </div>
 </div>

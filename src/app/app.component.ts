@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { InitFbService } from "app/modules/db/db-firebase/services/init-fb.service";
+import { Observable } from "rxjs/Observable";
+import { AppService } from "app/modules/core/services/app.service";
 
 @Component({
   selector: 'app-root',
@@ -8,7 +10,13 @@ import { InitFbService } from "app/modules/db/db-firebase/services/init-fb.servi
 })
 export class AppComponent implements OnInit {
 
-  constructor(private initFbService: InitFbService){}
+  showSpinner: Observable<boolean>;
+
+  constructor(private appService: AppService,
+              private initFbService: InitFbService){
+
+    this.showSpinner = this.appService.getShowSpinner();
+  }
 
   ngOnInit() {
 //  Initialize the Firebase Database with the data from Http Server

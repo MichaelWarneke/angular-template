@@ -3,11 +3,11 @@ import { FB_SERVICES } from "./services";
 
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
-import { environment } from '../../../../environments/environment';
+import { firebaseData } from '../../../../../firebase.data';
 
 @NgModule({
   imports: [
-    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireModule.initializeApp(firebaseData),
     AngularFireDatabaseModule,
   ],
   declarations: [],

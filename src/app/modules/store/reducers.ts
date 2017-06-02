@@ -37,6 +37,7 @@ export function reducer(state: any, action: any) {
 export const getAppState = (state: State) => state.app;
 
 export const getShowSidenav = createSelector(getAppState, AppReducer.getShowSidenav);
+export const getShowSpinner = createSelector(getAppState, AppReducer.getShowSpinner);
 
 // Home
 export const getHomeState = (state: State) => state.home;

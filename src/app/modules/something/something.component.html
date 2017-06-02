@@ -1,4 +1,5 @@
 <h1>Load Http get data</h1>
+<input md-input placeholder="Search" (keyup)="search(input.value)" #input>
 <md-list>
   <md-list-item  *ngFor="let post of posts | async">
     <md-icon md-list-icon>play_arrow</md-icon>

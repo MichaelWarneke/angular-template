@@ -4,13 +4,13 @@ import { SomethingComponent } from './something.component';
 import { SomethingRoutingModule } from "./something-routing.module";
 
 // Material Modules neccessary for Sidenav
-import { MdListModule, MdIconModule } from '@angular/material';
+import { MdInputModule, MdListModule, MdIconModule } from '@angular/material';
 
 @NgModule({
   imports: [
     SharedModule,
     SomethingRoutingModule,
-    MdListModule,MdIconModule
+    MdInputModule, MdListModule,MdIconModule
   ],
   declarations: [SomethingComponent]
 })
