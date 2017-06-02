@@ -13,6 +13,7 @@ import { Post } from "app/models/post";
 import { Todo } from "app/models/todo";
 
 import 'rxjs/add/operator/mergeMap';
+import { Observable } from "rxjs/Observable";
 
 @Injectable()
 export class HomeFireEffects {
@@ -27,21 +28,31 @@ export class HomeFireEffects {
   loadUsers$ = this.actions$
     .ofType(homeActions.FB_LOAD_USERS)
     .switchMap(action => this.usersService.getUsers())
-    .map((users: User[]) => new homeActions.LoadUsersSuccessAction(users))
+    .mergeMap((users: User[]) => {
+      return [
+        new homeActions.LoadUsersSuccessAction(users),
+      ]
+    })
     .catch(() => of (new homeActions.LoadUsersFailedAction()));
 
   @Effect() 
   loadPosts$ = this.actions$
     .ofType(homeActions.FB_LOAD_POSTS)
-    .switchMap(action => this.postsService.getPostsByUser(action.payload))
+    .map((action: homeActions.LoadPostsAction) => action.payload)
+    .switchMap(payload => this.postsService.getPostsByUser(payload))
     .map((posts: Post[]) => new homeActions.LoadPostsSuccessAction(posts))
     .catch(() => of (new homeActions.LoadPostsFailedAction()));
 
   @Effect() 
   loadTodos$ = this.actions$
     .ofType(homeActions.FB_LOAD_TODOS)
-    .switchMap(action => this.todosService.getTodosByUser(action.payload))
-    .map((todos: Todo[]) => new homeActions.LoadTodosSuccessAction(todos))
+    .map((action: homeActions.LoadTodosAction) => action.payload)
+    .switchMap(payload => this.todosService.getTodosByUser(payload))
+    .mergeMap((todos: Todo[]) => {
+      return [
+        new homeActions.LoadTodosSuccessAction(todos)
+      ]
+    })
     .catch(() => of (new homeActions.LoadTodosFailedAction()));
 
   @Effect() 

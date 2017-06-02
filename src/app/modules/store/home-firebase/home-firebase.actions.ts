@@ -93,10 +93,13 @@ export class LoadSelectedUserPostsFailedAction implements Action {
 }
 
 export type Actions
-  = LoadUsersSuccessAction
+  = LoadUsersAction
+  | LoadUsersSuccessAction
   | LoadUsersFailedAction
+  | LoadPostsAction
   | LoadPostsSuccessAction
   | LoadPostsFailedAction
+  | LoadTodosAction
   | LoadTodosSuccessAction
   | LoadTodosFailedAction
   | ChangeSelectedUserPostsAction

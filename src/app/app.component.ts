@@ -10,12 +10,12 @@ import { AppService } from "app/modules/core/services/app.service";
 })
 export class AppComponent implements OnInit {
 
-  showSpinner: Observable<boolean>;
+  showWaitingBar: Observable<boolean>;
 
   constructor(private appService: AppService,
               private initFbService: InitFbService){
 
-    this.showSpinner = this.appService.getShowSpinner();
+    this.showWaitingBar = this.appService.getShowWaitingBar();
   }
 
   ngOnInit() {

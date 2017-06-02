@@ -8,6 +8,9 @@ export interface State {
   todos: Todo[];
   selectedUserPosts: User;
   selectedUserTodos: User;
+  loadingUsers: boolean;
+  loadingPosts: boolean;
+  loadingTodos: boolean;
 }
 
 export const initialState: State = {
@@ -16,4 +19,7 @@ export const initialState: State = {
   todos: [],
   selectedUserPosts: null,
   selectedUserTodos: null,
+  loadingUsers: false,
+  loadingPosts: false,
+  loadingTodos: false,
 };

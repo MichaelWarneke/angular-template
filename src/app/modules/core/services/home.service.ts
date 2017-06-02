@@ -33,4 +33,16 @@ export class HomeService {
   changeFbSelectedUserPosts(userId: string) {
     this.store.dispatch(new Actions.Actions.homeFire.ChangeSelectedUserPostsAction(userId));
   }
+
+  getFireLoadingUsers(): Observable<boolean> {
+    return this.store.select(Reducers.getFireLoadingUsers);
+  }
+
+  getFireLoadingPosts(): Observable<boolean> {
+    return this.store.select(Reducers.getFireLoadingPosts);
+  }
+
+  getFireLoadingTodos(): Observable<boolean> {
+    return this.store.select(Reducers.getFireLoadingTodos);
+  }
 }

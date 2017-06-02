@@ -14,24 +14,27 @@ export class AppEffects {
   }
 
   @Effect() 
-    spinnerOnAction$ = this.actions$
+    showWaitingBarAction$ = this.actions$
     .ofType(rootActions.Actions.homeFire.FB_LOAD_USERS,
-            rootActions.Actions.homeFire.FB_LOAD_POSTS)
+            rootActions.Actions.homeFire.FB_LOAD_POSTS,
+            rootActions.Actions.homeFire.FB_LOAD_TODOS)
     .switchMap(() => {
       return [
-        new appActions.ShowSpinnerAction(true)
+        new appActions.ShowWaitingBarAction(true)
       ];
     })    
 
   @Effect() 
-    spinnerOffAction$ = this.actions$
+    hideWaitingBarAction$ = this.actions$
     .ofType(rootActions.Actions.homeFire.FB_LOAD_USERS_FAILED,
             rootActions.Actions.homeFire.FB_LOAD_USERS_SUCCESS,
             rootActions.Actions.homeFire.FB_LOAD_POSTS_FAILED,
-            rootActions.Actions.homeFire.FB_LOAD_POSTS_SUCCESS)
+            rootActions.Actions.homeFire.FB_LOAD_POSTS_SUCCESS,
+            rootActions.Actions.homeFire.FB_LOAD_TODOS_FAILED,
+            rootActions.Actions.homeFire.FB_LOAD_TODOS_SUCCESS,)
     .switchMap(() => {
       return [
-        new appActions.ShowSpinnerAction(false)
+        new appActions.ShowWaitingBarAction(false)
       ];
     })    
 }

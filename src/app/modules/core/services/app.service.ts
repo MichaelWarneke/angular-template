@@ -32,11 +32,11 @@ export class AppService {
     this.store.dispatch(new Actions.Actions.app.ToogleSidenavAction());
   }
 
-  getShowSpinner(): Observable<boolean> {
-    return this.store.select(Reducers.getShowSpinner);
+  getShowWaitingBar(): Observable<boolean> {
+    return this.store.select(Reducers.getShowWaitingBar);
   }
 
-  showSpinner(showSpinner: boolean) {
-    this.store.dispatch(new Actions.Actions.app.ShowSpinnerAction(showSpinner));
+  showWaitingBar(showWaitingBar: boolean) {
+    this.store.dispatch(new Actions.Actions.app.ShowWaitingBarAction(showWaitingBar));
   }
 }

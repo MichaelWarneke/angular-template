@@ -1,9 +1,9 @@
 export interface State {
   showSidenav: boolean;
-  showSpinner: boolean;
+  showWaitingBar: boolean;
 }
 
 export const initialState: State = {
   showSidenav: false,
-  showSpinner: false,
+  showWaitingBar: false,
 };

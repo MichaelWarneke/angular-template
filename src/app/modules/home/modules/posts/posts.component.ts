@@ -17,17 +17,24 @@ export class PostsComponent implements OnInit, OnDestroy {
   posts: Observable<Post[]>;
   selectedUser: Observable<User>;
 
+  loadingUsers: Observable<boolean>;
+  loadingPosts: Observable<boolean>;
+
   constructor(private userService: UsersService,
               private postService: PostsService,
               private homeService: HomeService) { 
     this.users = this.userService.getFbUsers();
     this.posts = this.postService.getFbPosts();
     this.selectedUser = this.homeService.getFbSelectedUserPosts();
+
+    this.loadingUsers = this.homeService.getFireLoadingUsers();
+    this.loadingPosts = this.homeService.getFireLoadingPosts();
   }
 
   ngOnInit() {
     // Load users
     this.userService.loadFbUsers();
+
   }
 
   ngOnDestroy() {

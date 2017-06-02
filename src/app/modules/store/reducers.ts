@@ -24,7 +24,9 @@ const productionReducer: ActionReducer<State> = combineReducers(reducers);
 
 
 export function reducer(state: any, action: any) {
-  console.log("Reducer : " + action.type + " payload : " + JSON.stringify(action.payload));
+
+  console.log("Reducer : " + action.type);
+  console.log(action.payload);
   if (environment.production) {
     return productionReducer(state, action);
   }
@@ -37,7 +39,7 @@ export function reducer(state: any, action: any) {
 export const getAppState = (state: State) => state.app;
 
 export const getShowSidenav = createSelector(getAppState, AppReducer.getShowSidenav);
-export const getShowSpinner = createSelector(getAppState, AppReducer.getShowSpinner);
+export const getShowWaitingBar = createSelector(getAppState, AppReducer.getShowWaitingBar);
 
 // Home
 export const getHomeState = (state: State) => state.home;
@@ -58,3 +60,7 @@ export const getFireTodos = createSelector(getHomeFireState, HomeFireReducer.get
 
 export const getFireselectedUserPosts = createSelector(getHomeFireState, HomeFireReducer.getselectedUserPosts);
 export const getFireselectedUserTodos = createSelector(getHomeFireState, HomeFireReducer.getselectedUserTodos);
+
+export const getFireLoadingUsers = createSelector(getHomeFireState, HomeFireReducer.getLoadingUsers);
+export const getFireLoadingPosts = createSelector(getHomeFireState, HomeFireReducer.getLoadingPosts);
+export const getFireLoadingTodos = createSelector(getHomeFireState, HomeFireReducer.getLoadingTodos);

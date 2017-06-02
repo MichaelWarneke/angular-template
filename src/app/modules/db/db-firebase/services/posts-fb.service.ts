@@ -10,6 +10,7 @@ export class PostsFbService {
   constructor(private db: AngularFireDatabase) { }
 
   getPostsByUser(key: string): Observable<Post[]>{
+    console.log("getPostsByUser : " + key);
     if(key && key != "") {
       return this.db.list('/posts', {query: { orderByChild: 'userId', equalTo: key}} ).map(Post.fromJsonList);
     }

@@ -4,7 +4,6 @@ import { ActivatedRoute } from '@angular/router';
 import { Actions, Effect } from '@ngrx/effects';
 
 import * as homeActions from './home.actions';
-import * as rootActions from '../actions';
 import { UsersDbService } from "app/modules/db/services/users-db.service";
 import { PostsDbService } from "app/modules/db/services/posts-db.service";
 import { TodosDbService } from "app/modules/db/services/todos-db.service";
@@ -12,11 +11,13 @@ import { UsersFbService } from "app/modules/db/db-firebase/services/users-fb.ser
 import { PostsFbService } from "app/modules/db/db-firebase/services/posts-fb.service";
 import { TodosFbService } from "app/modules/db/db-firebase/services/todos-fb.service";
 import { of } from "rxjs/observable/of";
+import { from } from "rxjs/observable/from";
 import { User } from "app/models/user";
 import { Post } from "app/models/post";
 import { Todo } from "app/models/todo";
 
 import 'rxjs/add/operator/mergeMap';
+import { Observable } from "rxjs/Observable";
 
 @Injectable()
 export class HomeEffects {
@@ -44,7 +45,8 @@ export class HomeEffects {
   @Effect() 
   loadTodos$ = this.actions$
     .ofType(homeActions.LOAD_TODOS)
-    .switchMap(action => this.todosService.getTodos(action.payload))
+    .map((action: homeActions.LoadTodosAction) => action.payload)
+    .switchMap(userId => this.todosService.getTodos(userId))
     .map((todos: Todo[]) => new homeActions.LoadTodosSuccessAction(todos))
     .catch(() => of (new homeActions.LoadTodosFailedAction()));
 

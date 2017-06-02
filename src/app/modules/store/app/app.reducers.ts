@@ -16,9 +16,9 @@ export function reducer(state = initialState, action: Actions.Actions): State {
       return Object.assign({}, state, {
         showSidenav: !state.showSidenav,
       });
-    case Actions.SHOW_SPINNER:
+    case Actions.SHOW_WAITING_BAR:
       return Object.assign({}, state, {
-        showSpinner: action.payload,
+        showWaitingBar: action.payload,
       });
     default:
       return state;
@@ -26,4 +26,4 @@ export function reducer(state = initialState, action: Actions.Actions): State {
 }
 
 export const getShowSidenav = (state: State) => state.showSidenav;
-export const getShowSpinner = (state: State) => state.showSpinner;
+export const getShowWaitingBar = (state: State) => state.showWaitingBar;
