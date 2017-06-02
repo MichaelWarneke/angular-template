@@ -12,6 +12,9 @@ import { of } from "rxjs/observable/of";
 export class AppEffects {
   constructor(private actions$: Actions ) {
   }
+  @Effect({ dispatch: false }) 
+    logger$ = this.actions$
+    .do(action => console.log("Effect debug ", action.type, action.payload));
 
   @Effect() 
     showWaitingBarAction$ = this.actions$

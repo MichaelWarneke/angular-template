@@ -1,7 +1,7 @@
 
 <div class="container" fxLayout='row' fxLayout.xs="column">
   <div fxFlex="25%">
-      <h2>Users</h2>
+      <h2 fxLayout="row">Users <app-waiting-spinner [showSpinner]="loadingUsers | async"></app-waiting-spinner></h2>
       <md-list *ngFor="let user of users| async">
         <md-list-item (click)="onSelectUser(user.$key)"  [ngClass]="{'selected' : user.$key == selectedUser}">
           <p md-line>{{user.username}}</p>
@@ -13,7 +13,7 @@
       </md-list>
   </div>
   <div fxFlex fxHide.xs>
-      <h2>Todos</h2>
+      <h2 fxLayout="row">Todos <app-waiting-spinner [showSpinner]="loadingTodos | async"></app-waiting-spinner></h2>
       <md-list>
         <md-list-item *ngFor="let todo of todos| async">
           <p md-line>{{todo.title}}</p>
@@ -23,6 +23,7 @@
           </ng-template>
           <md-divider></md-divider>
         </md-list-item>
+        <md-divider></md-divider>
       </md-list>
   </div>
 </div>

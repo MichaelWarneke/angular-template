@@ -39,7 +39,7 @@ export class HomeFireEffects {
   loadPosts$ = this.actions$
     .ofType(homeActions.FB_LOAD_POSTS)
     .map((action: homeActions.LoadPostsAction) => action.payload)
-    .switchMap(payload => this.postsService.getPostsByUser(payload))
+    .switchMap(userId => this.postsService.getPostsByUser(userId))
     .map((posts: Post[]) => new homeActions.LoadPostsSuccessAction(posts))
     .catch(() => of (new homeActions.LoadPostsFailedAction()));
 

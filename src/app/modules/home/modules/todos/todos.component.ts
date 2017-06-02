@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { UsersService } from "app/modules/core/services/users.service";
 import { TodosService } from "app/modules/core/services/todos.service";
+import { HomeService } from "app/modules/core/services/home.service";
 import { Subscription } from "rxjs/Subscription";
 import { Observable } from "rxjs/Observable";
 import { User } from "app/models/user";
@@ -17,11 +18,18 @@ export class TodosComponent implements OnInit, OnDestroy {
   todos: Observable<Todo[]>;
   selectedUser: string;
 
+  loadingUsers: Observable<boolean>;
+  loadingTodos: Observable<boolean>;
+
   constructor(private userService: UsersService,
-              private todoService: TodosService) { 
+              private todoService: TodosService,
+              private homeService: HomeService) { 
     this.users = this.userService.getFbUsers();
     this.todos = this.todoService.getFbTodos();
     this.selectedUser = null;
+
+    this.loadingUsers = this.homeService.getFireLoadingUsers();
+    this.loadingTodos = this.homeService.getFireLoadingTodos();
   }
 
   ngOnInit() {

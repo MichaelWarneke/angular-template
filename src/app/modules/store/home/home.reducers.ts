@@ -5,45 +5,54 @@ import { initialState, State } from './home.states';
 export function reducer(state = initialState, action: Actions.Actions): State {
   switch (action.type) {
     case Actions.LOAD_USERS_SUCCESS:
-      return Object.assign({}, state, {
+      return {
+        ...state,
         users: action.payload
-      });
+      }
     case Actions.LOAD_USERS_FAILED:
-      return Object.assign({}, state, {
+      return {
+        ...state,
         users: null
-      });
+      }
 
     case Actions.LOAD_POSTS_SUCCESS:
-      return Object.assign({}, state, {
+      return {
+        ...state,
         posts: action.payload
-      });
+      }
     case Actions.LOAD_POSTS_FAILED:
-      return Object.assign({}, state, {
+      return {
+        ...state,
         posts: null
-      });
+      }
 
     case Actions.LOAD_TODOS_SUCCESS:
-      return Object.assign({}, state, {
+      return {
+        ...state,
         todos: action.payload
-      });
+      }
     case Actions.LOAD_TODOS_FAILED:
-      return Object.assign({}, state, {
+      return {
+        ...state,
         todos: null
-      });
+      }
     case Actions.CHANGE_SELECTED_USER_POSTS_SUCCESS:
       return state;
     case Actions.CHANGE_SELECTED_USER_POSTS_FAILED:
-      return Object.assign({}, state, {
+      return {
+        ...state,
         selectedUserPosts: null
-      });
+      }
     case Actions.LOAD_SELECTED_USER_POSTS_SUCCESS:
-      return Object.assign({}, state, {
+      return {
+        ...state,
         selectedUserPosts: action.payload
-      });
+      }
     case Actions.LOAD_SELECTED_USER_POSTS_FAILED:
-      return Object.assign({}, state, {
+      return {
+        ...state,
         selectedUserPosts: null
-      });
+      }
     default:
       return state;
   }

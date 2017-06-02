@@ -5,63 +5,75 @@ import { initialState, State } from './home-firebase.states';
 export function reducer(state = initialState, action: Actions.Actions): State {
   switch (action.type) {
     case Actions.FB_LOAD_USERS:
-      return Object.assign({}, state, {
+      return {
+        ...state,
         loadingUsers: true
-      });
+      };
     case Actions.FB_LOAD_USERS_SUCCESS:
-      return Object.assign({}, state, {
+      return {
+        ...state,
         users: action.payload,
         loadingUsers: false
-      });
+      };
     case Actions.FB_LOAD_USERS_FAILED:
-      return Object.assign({}, state, {
+      return {
+        ...state,
         users: null,
         loadingUsers: false
-      });
+      };
 
     case Actions.FB_LOAD_POSTS:
-      return Object.assign({}, state, {
+      return {
+        ...state,
         loadingPosts: true
-      });
+      };
     case Actions.FB_LOAD_POSTS_SUCCESS:
-      return Object.assign({}, state, {
+      return {
+        ...state,
         posts: action.payload,
         loadingPosts: false
-      });
+      };
     case Actions.FB_LOAD_POSTS_FAILED:
-      return Object.assign({}, state, {
+      return {
+        ...state,
         posts: null,
         loadingPosts: false
-      });
+      };
 
     case Actions.FB_LOAD_TODOS:
-      return Object.assign({}, state, {
+      return {
+        ...state,
         loadingTodos: true
-      });
+      };
     case Actions.FB_LOAD_TODOS_SUCCESS:
-      return Object.assign({}, state, {
+      return {
+        ...state,
         todos: action.payload,
         loadingTodos: false
-      });
+      };
     case Actions.FB_LOAD_TODOS_FAILED:
-      return Object.assign({}, state, {
+      return {
+        ...state,
         todos: null,
         loadingTodos: false
-      });
+      };
     case Actions.FB_CHANGE_SELECTED_USER_POSTS_SUCCESS:
       return state;
     case Actions.FB_CHANGE_SELECTED_USER_POSTS_FAILED:
-      return Object.assign({}, state, {
+      return {
+        ...state,
         selectedUserPosts: null
-      });
+      };
     case Actions.FB_LOAD_SELECTED_USER_POSTS_SUCCESS:
-      return Object.assign({}, state, {
+      return {
+        ...state,
         selectedUserPosts: action.payload
-      });
+      };
     case Actions.FB_LOAD_SELECTED_USER_POSTS_FAILED:
-      return Object.assign({}, state, {
+      return {
+        ...state,
         selectedUserPosts: null
-      });
+      };
     default:
       return state;
   }
