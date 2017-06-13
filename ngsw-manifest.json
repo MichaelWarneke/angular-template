@@ -1,0 +1,47 @@
+{
+  "push": {
+    "showNotifications": true,
+    "backgroundOnly": false
+  },
+  "routing": {
+    "index": "/index.html",
+    "routes": {
+      "/": {
+        "match": "exact"
+      },
+      "/something": {
+        "match": "prefix"
+      },
+      "/home": {
+        "match": "prefix"
+      }
+    }
+  },
+  "dynamic": {
+    "group": [
+      {
+        "name": "httpRequest",
+        "urls": {
+          "https://jsonplaceholder.typicode.com/": {
+            "match": "prefix"
+          }
+        },
+        "cache": {
+          "optimizeFor": "performance",
+          "maxAgeMs": 3600000,
+          "maxEntries": 2000,
+          "strategy": "lru"
+        }
+      }      
+    ]
+  },
+  "external": {
+   "urls": [{
+     "url": "https://fonts.googleapis.com/css?family=Material+Icons"
+   }, {
+     "url": "https://fonts.googleapis.com/css?family=Roboto:400,300"
+   }, {
+     "url": "https://fonts.gstatic.com/s/materialicons/v22/2fcrYFNaTjcS6g4U3t-Y5UEw0lE80llgEseQY3FEmqw.woff2"
+   }]
+ }
+}

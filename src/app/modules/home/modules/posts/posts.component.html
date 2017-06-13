@@ -6,9 +6,9 @@
       <md-list>
         <md-list-item  *ngFor="let user of users | async" (click)="onSelectUser(user.$key)" [ngClass]="{'selected' : user.$key == (selectedUser | async)?.$key}">
           <p md-line>{{user.username}}</p><br>
-          <md-icon md-list-icon>play_arrow</md-icon>
+<!--          <md-icon md-list-icon>play_arrow</md-icon>
           <p md-line> {{user.name}} </p>
-          <p md-line> {{user.email}} </p>
+          <p md-line> {{user.email}} </p>-->
         </md-list-item>
         <md-divider></md-divider>
       </md-list>

@@ -4,7 +4,7 @@ import { Observable } from "rxjs/Observable";
 
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
-import { Post } from "app/models/post";
+import { Post } from "../../../models/post";
 
 @Injectable()
 export class PostsDbService {
