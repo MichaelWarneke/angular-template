@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { InitFbService } from "app/modules/db/db-firebase/services/init-fb.service";
+//import { InitFbService } from "app/modules/db/db-firebase/services/init-fb.service";
 
 
 @Component({
@@ -10,7 +10,7 @@ import { InitFbService } from "app/modules/db/db-firebase/services/init-fb.servi
 export class AppComponent implements OnInit {
 
 
-  constructor(private initFbService: InitFbService){
+  constructor(/*private initFbService: InitFbService*/){
 
   }
 

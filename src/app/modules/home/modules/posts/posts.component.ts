@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ChangeDetectionStrategy } from '@angular/core';
 import { UsersService } from "app/modules/core/services/users.service";
 import { PostsService } from "app/modules/core/services/posts.service";
 import { Observable } from "rxjs/Observable";
@@ -29,11 +29,12 @@ export class PostsComponent implements OnInit, OnDestroy {
 
     this.loadingUsers = this.homeService.getFireLoadingUsers();
     this.loadingPosts = this.homeService.getFireLoadingPosts();
+
+    // Load users
+    this.userService.loadFbUsers();
   }
 
   ngOnInit() {
-    // Load users
-    this.userService.loadFbUsers();
 
   }
 

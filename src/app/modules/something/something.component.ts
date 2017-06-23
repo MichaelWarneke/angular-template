@@ -15,11 +15,12 @@ export class SomethingComponent implements OnInit, OnDestroy {
 
   constructor(private postsService: PostsService) { 
     this.posts = postsService.getPosts();
+
+    // Load posts
+    this.postsService.loadPosts(null);
   }
 
   ngOnInit() {
-    // Load posts
-    this.postsService.loadPosts(null);
   }
 
   ngOnDestroy() {

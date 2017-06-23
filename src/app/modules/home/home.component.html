@@ -1,13 +1,8 @@
 <md-sidenav-container>
-    <md-sidenav (close)="closeSidenav()" [opened]="showSidenav$ | async" mode="over">
-        <home-side-menu (onSideMenuClick)="closeSidenav()"></home-side-menu>
-    </md-sidenav>
+    <md-sidenav (close)="closeSidenav()" mode="side" opened="true">
+        <home-side-menu (onSideMenuClick)="onSideMenuClick($event)" [opened]="(showSidenav$ | async)"></home-side-menu>        
 
-    <div class="my-sidenav-menu-button">
-        <button md-button (click)="toggleSidenav()">
-            <md-icon>menu</md-icon>
-        </button>
-    </div>
+    </md-sidenav>
 
     <router-outlet></router-outlet>
 </md-sidenav-container>

@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ChangeDetectionStrategy } from '@angular/core';
 import { UsersService } from "app/modules/core/services/users.service";
 import { TodosService } from "app/modules/core/services/todos.service";
 import { HomeService } from "app/modules/core/services/home.service";
@@ -30,11 +30,12 @@ export class TodosComponent implements OnInit, OnDestroy {
 
     this.loadingUsers = this.homeService.getFireLoadingUsers();
     this.loadingTodos = this.homeService.getFireLoadingTodos();
+
+    // Load users
+    this.userService.loadFbUsers();
   }
 
   ngOnInit() {
-    // Load users
-    this.userService.loadFbUsers();
   }
 
   ngOnDestroy() {

@@ -1,10 +1,20 @@
 <md-nav-list>
-    <a md-list-item (click)="onSideMenuClick.emit()" [routerLink]="['/home/posts']">
-        <md-icon md-list-icon>dns</md-icon>
-        <span md-line class="my-side-menu-line">Posts</span>
+    <a *ngIf="!opened" md-list-item (click)="onSideMenuClicked('OpenSidenav')">
+        <md-icon md-list-icon>menu</md-icon>
+        <span *ngIf="opened"></span>
     </a>
-    <a md-list-item (click)="onSideMenuClick.emit()" [routerLink]="['/home/todos']">
+    <a *ngIf="opened" md-list-item (click)="onSideMenuClicked('CloseSidenav')">
+        <span fxFlex></span>
+        <md-icon>navigate_before</md-icon>
+    </a>
+    <a md-list-item (click)="onSideMenuClicked('Posts')">
+        <md-icon md-list-icon>dns</md-icon>
+        <span *ngIf="opened" md-line class="my-side-menu-line">Posts</span>
+    </a>
+    <a md-list-item (click)="onSideMenuClicked('Todos')">
         <md-icon md-list-icon>today</md-icon>
-        <span md-line class="my-side-menu-line">Todos</span>
+        <span *ngIf="opened" md-line class="my-side-menu-line">Todos</span>
     </a>
 </md-nav-list>
+
+ 

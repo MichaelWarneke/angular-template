@@ -20,7 +20,8 @@ export class AppEffects {
     showWaitingBarAction$ = this.actions$
     .ofType(rootActions.Actions.homeFire.FB_LOAD_USERS,
             rootActions.Actions.homeFire.FB_LOAD_POSTS,
-            rootActions.Actions.homeFire.FB_LOAD_TODOS)
+            rootActions.Actions.homeFire.FB_LOAD_TODOS,
+            rootActions.Actions.home.LOAD_POSTS)
     .switchMap(() => {
       return [
         new appActions.ShowWaitingBarAction(true)
@@ -34,7 +35,9 @@ export class AppEffects {
             rootActions.Actions.homeFire.FB_LOAD_POSTS_FAILED,
             rootActions.Actions.homeFire.FB_LOAD_POSTS_SUCCESS,
             rootActions.Actions.homeFire.FB_LOAD_TODOS_FAILED,
-            rootActions.Actions.homeFire.FB_LOAD_TODOS_SUCCESS,)
+            rootActions.Actions.homeFire.FB_LOAD_TODOS_SUCCESS,
+            rootActions.Actions.home.LOAD_POSTS_FAILED,
+            rootActions.Actions.home.LOAD_POSTS_SUCCESS)
     .switchMap(() => {
       return [
         new appActions.ShowWaitingBarAction(false)
