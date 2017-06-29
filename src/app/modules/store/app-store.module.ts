@@ -8,14 +8,12 @@ import { EffectsModule } from '@ngrx/effects';
 
 import { reducer } from './reducers';
 import { AppEffects, HomeEffects, HomeFireEffects } from './effects';
-import { DbModule } from "app/modules/db/db.module";
-import { DbFirebaseModule } from "app/modules/db/db-firebase/db-firebase.module";
 
+import { DbInterfaceModule } from './db.interface';
 
 @NgModule({
   imports: [
-    DbModule.forRoot(),
-    DbFirebaseModule.forRoot(),
+    DbInterfaceModule.forRoot(),
 // NGRX
     StoreModule.provideStore(reducer),
     RouterStoreModule.connectRouter(),
@@ -25,7 +23,9 @@ import { DbFirebaseModule } from "app/modules/db/db-firebase/db-firebase.module"
     EffectsModule.run(HomeEffects),
     EffectsModule.run(HomeFireEffects),
   ],
-  declarations: []
+  declarations: [],
+  providers: [
+  ]
 })
 export class AppStoreModule { 
   static forRoot(): ModuleWithProviders {

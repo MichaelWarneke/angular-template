@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from "rxjs/Observable";
 import { User } from "app/models/user";
 import { AngularFireDatabase } from "angularfire2/database";
+import { of } from "rxjs/observable/of";
 
 @Injectable()
 export class UsersFbService {
@@ -16,6 +17,6 @@ export class UsersFbService {
     if(key && key != "") {
       return this.db.object('/users/' + key).map(User.fromJson);
     }
-    return null;
+    return of(null);
   }
 }

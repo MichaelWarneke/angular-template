@@ -24,6 +24,7 @@ export class PostsComponent implements OnInit, OnDestroy {
               private postService: PostsService,
               private homeService: HomeService) { 
     this.users = this.userService.getFbUsers();
+
     this.posts = this.postService.getFbPosts();
     this.selectedUser = this.homeService.getFbSelectedUserPosts();
 

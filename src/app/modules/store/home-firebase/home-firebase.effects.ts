@@ -4,9 +4,6 @@ import { ActivatedRoute } from '@angular/router';
 import { Actions, Effect } from '@ngrx/effects';
 
 import * as homeActions from './home-firebase.actions';
-import { UsersFbService } from "app/modules/db/db-firebase/services/users-fb.service";
-import { PostsFbService } from "app/modules/db/db-firebase/services/posts-fb.service";
-import { TodosFbService } from "app/modules/db/db-firebase/services/todos-fb.service";
 import { of } from "rxjs/observable/of";
 import { User } from "app/models/user";
 import { Post } from "app/models/post";
@@ -14,13 +11,14 @@ import { Todo } from "app/models/todo";
 
 import 'rxjs/add/operator/mergeMap';
 import { Observable } from "rxjs/Observable";
+import { IUsersFbService, ITodosFbService, IPostsFbService } from "app/modules/store/db.interface";
 
 @Injectable()
 export class HomeFireEffects {
   constructor(private actions$: Actions, 
-              private usersService: UsersFbService,
-              private postsService: PostsFbService,
-              private todosService: TodosFbService
+              private usersService: IUsersFbService,
+              private postsService: IPostsFbService,
+              private todosService: ITodosFbService
               ) {
   }
 

@@ -2,18 +2,27 @@
 <div class="container" fxLayout='row' fxLayout.xs="column">
   <div fxFlex="25%">
       <h2 fxLayout="row">Users <app-waiting-spinner [showSpinner]="loadingUsers | async"></app-waiting-spinner></h2>
-      
       <md-list>
-        <md-list-item  *ngFor="let user of users | async" (click)="onSelectUser(user.$key)" [ngClass]="{'selected' : user.$key == (selectedUser | async)?.$key}">
-          <p md-line>{{user.username}}</p><br>
-<!--          <md-icon md-list-icon>play_arrow</md-icon>
-          <p md-line> {{user.name}} </p>
-          <p md-line> {{user.email}} </p>-->
-        </md-list-item>
+        <div *ngIf="selectedUser | async as user; else listblock">
+          <md-list-item  [ngClass]="{'selected' : true}">
+            <p md-line>{{user.username}}</p><br>
+            <md-icon (click)="onSelectUser('')">menu</md-icon>
+          </md-list-item>
+        </div>
+
+        <ng-template #listblock>
+          <md-list-item  *ngFor="let user of users | async" (click)="onSelectUser(user.$key)" [ngClass]="{'selected' : user.$key == (selectedUser | async)?.$key}">
+            <p md-line>{{user.username}}</p><br>
+  <!--          <md-icon md-list-icon>play_arrow</md-icon>
+            <p md-line> {{user.name}} </p>
+            <p md-line> {{user.email}} </p>-->
+          </md-list-item>
+        </ng-template>
+
         <md-divider></md-divider>
       </md-list>
   </div>
-  <div fxFlex fxHide.xs>
+  <div fxFlex *ngIf="selectedUser | async">
       <h2 fxLayout="row">Posts <app-waiting-spinner [showSpinner]="loadingPosts | async"></app-waiting-spinner></h2>
       
       <div *ngFor="let post of posts | async">

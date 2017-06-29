@@ -7,7 +7,7 @@ import * as homeActions from './home.actions';
 import { UsersDbService } from "app/modules/db/services/users-db.service";
 import { PostsDbService } from "app/modules/db/services/posts-db.service";
 import { TodosDbService } from "app/modules/db/services/todos-db.service";
-import { UsersFbService } from "app/modules/db/db-firebase/services/users-fb.service";
+//import { UsersFbService } from "app/modules/db/db-firebase/services/users-fb.service";
 import { PostsFbService } from "app/modules/db/db-firebase/services/posts-fb.service";
 import { TodosFbService } from "app/modules/db/db-firebase/services/todos-fb.service";
 import { of } from "rxjs/observable/of";
@@ -18,6 +18,7 @@ import { Todo } from "app/models/todo";
 
 import 'rxjs/add/operator/mergeMap';
 import { Observable } from "rxjs/Observable";
+import { IUsersDbService } from "app/modules/store/app-store";
 
 @Injectable()
 export class HomeEffects {
