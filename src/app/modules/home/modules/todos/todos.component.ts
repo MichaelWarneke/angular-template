@@ -1,7 +1,5 @@
 import { Component, OnInit, OnDestroy, ChangeDetectionStrategy } from '@angular/core';
-import { UsersService } from "app/modules/core/services/users.service";
-import { TodosService } from "app/modules/core/services/todos.service";
-import { HomeService } from "app/modules/core/services/home.service";
+import { IUsersService, ITodosService, IHomeService } from "app/modules/core/store.interface";
 import { Subscription } from "rxjs/Subscription";
 import { Observable } from "rxjs/Observable";
 import { User } from "app/models/user";
@@ -21,9 +19,9 @@ export class TodosComponent implements OnInit, OnDestroy {
   loadingUsers: Observable<boolean>;
   loadingTodos: Observable<boolean>;
 
-  constructor(private userService: UsersService,
-              private todoService: TodosService,
-              private homeService: HomeService) { 
+  constructor(private userService: IUsersService,
+              private todoService: ITodosService,
+              private homeService: IHomeService) { 
     this.users = this.userService.getFbUsers();
     this.todos = this.todoService.getFbTodos();
     this.selectedUser = null;

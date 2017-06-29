@@ -1,5 +1,5 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { AppService } from "app/modules/core/services/app.service";
+import { IAppService } from "app/modules/core/store.interface";
 import { Observable } from "rxjs/Observable";
 import { Router } from "@angular/router";
 
@@ -12,7 +12,7 @@ import { Router } from "@angular/router";
 export class HomeComponent implements OnInit {
   showSidenav$: Observable<boolean>;
 
-  constructor(private appService: AppService,
+  constructor(private appService: IAppService,
               private router: Router) { 
     this.showSidenav$ = this.appService.getSideMenu();
   }

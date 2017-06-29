@@ -1,6 +1,6 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Observable } from "rxjs/Observable";
-import { AppService } from "app/modules/core/services/app.service";
+import { IAppService } from "app/modules/core/store.interface";
 
 @Component({
   selector: 'app-root-component',
@@ -11,7 +11,7 @@ export class RootComponent implements OnInit {
 
   showWaitingBar$: Observable<boolean>;
 
-  constructor(private appService: AppService) {
+  constructor(private appService: IAppService) {
     this.showWaitingBar$ = this.appService.getShowWaitingBar();
   }
 

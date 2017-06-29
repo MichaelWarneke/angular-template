@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from "rxjs/Subscription";
-import { PostsService } from "app/modules/core/services/posts.service";
+import { IPostsService } from "app/modules/core/store.interface";
 import { Observable } from "rxjs/Observable";
 import { Post } from "app/models/Post";
 
@@ -13,7 +13,7 @@ export class SomethingComponent implements OnInit, OnDestroy {
 
   posts: Observable<Post[]>;
 
-  constructor(private postsService: PostsService) { 
+  constructor(private postsService: IPostsService) { 
     this.posts = postsService.getPosts();
 
     // Load posts

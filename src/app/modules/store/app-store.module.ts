@@ -6,6 +6,8 @@ import { RouterStoreModule } from '@ngrx/router-store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
 
+import { SERVICES } from "./services";
+
 import { reducer } from './reducers';
 import { AppEffects, HomeEffects, HomeFireEffects } from './effects';
 
@@ -25,6 +27,7 @@ import { DbInterfaceModule } from './db.interface';
   ],
   declarations: [],
   providers: [
+    SERVICES,
   ]
 })
 export class AppStoreModule { 

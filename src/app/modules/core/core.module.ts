@@ -2,14 +2,11 @@ import { NgModule, Optional, SkipSelf, ModuleWithProviders } from '@angular/core
 import { HttpModule } from '@angular/http';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { SERVICES } from "./services";
-
-import { AppStoreModule } from '../store/app-store.module';
-
+import { StoreInterfaceModule } from "./store.interface";
 
 @NgModule({
   imports: [
-    AppStoreModule.forRoot(),
+    StoreInterfaceModule.forRoot()
   ],
   exports: [
     BrowserAnimationsModule,
@@ -17,7 +14,7 @@ import { AppStoreModule } from '../store/app-store.module';
   ],
   declarations: [],
   providers: [
-    SERVICES,
+
   ]
 })
 export class CoreModule {

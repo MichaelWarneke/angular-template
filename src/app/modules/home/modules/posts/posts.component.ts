@@ -1,10 +1,8 @@
 import { Component, OnInit, OnDestroy, ChangeDetectionStrategy } from '@angular/core';
-import { UsersService } from "app/modules/core/services/users.service";
-import { PostsService } from "app/modules/core/services/posts.service";
+import { IUsersService, IPostsService, IHomeService } from "app/modules/core/store.interface";
 import { Observable } from "rxjs/Observable";
 import { User } from "app/models/user";
 import { Post } from "app/models/post";
-import { HomeService } from "app/modules/core/services/home.service";
 
 @Component({
   selector: 'app-posts',
@@ -20,9 +18,9 @@ export class PostsComponent implements OnInit, OnDestroy {
   loadingUsers: Observable<boolean>;
   loadingPosts: Observable<boolean>;
 
-  constructor(private userService: UsersService,
-              private postService: PostsService,
-              private homeService: HomeService) { 
+  constructor(private userService: IUsersService,
+              private postService: IPostsService,
+              private homeService: IHomeService) { 
     this.users = this.userService.getFbUsers();
 
     this.posts = this.postService.getFbPosts();

@@ -4,9 +4,9 @@ import { Observable } from "rxjs/Observable";
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 import { Store } from "@ngrx/store";
-import * as States from 'app/modules/store/states';
-import * as Reducers from 'app/modules/store/reducers';
-import * as Actions from 'app/modules/store/actions';
+import * as States from '../states';
+import * as Reducers from '../reducers';
+import * as Actions from '../actions';
 import { User } from "app/models/user";
 
 @Injectable()
