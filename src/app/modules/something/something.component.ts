@@ -1,33 +1,26 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from "rxjs/Subscription";
-import { IPostsService } from "app/modules/core/store.interface";
+
 import { Observable } from "rxjs/Observable";
 import { Post } from "app/models/Post";
+import { SomethingService } from "./something.service";
 
 @Component({
   selector: 'app-something',
   templateUrl: './something.component.html',
-  styleUrls: ['./something.component.scss']
+  styleUrls: ['./something.component.scss'],
+  providers: [SomethingService]
 })
-export class SomethingComponent implements OnInit, OnDestroy {
+export class SomethingComponent {
 
   posts: Observable<Post[]>;
 
-  constructor(private postsService: IPostsService) { 
-    this.posts = postsService.getPosts();
+  constructor(private service: SomethingService) { 
+    this.posts = this.service.getPosts();
 
-    // Load posts
-    this.postsService.loadPosts(null);
-  }
-
-  ngOnInit() {
-  }
-
-  ngOnDestroy() {
   }
 
   search(search: string) {
-    console.log("Search : " +search);
-    this.posts = this.postsService.getPosts().map(posts => posts.filter(post => post.title.includes(search)));
+    this.posts = this.service.getPostBySearch(search);
   }
 }

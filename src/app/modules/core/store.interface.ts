@@ -3,11 +3,7 @@ import { NgModule, ModuleWithProviders } from '@angular/core';
 import { AppStoreModule } from 'app/modules/store/app-store.module';
 import { Observable } from "rxjs/Observable";
 
-import { AppService } from "app/modules/store/services/app.service";
-import { HomeService } from "app/modules/store/services/home.service";
-import { PostsService } from "app/modules/store/services/posts.service";
-import { TodosService } from "app/modules/store/services/todos.service";
-import { UsersService } from "app/modules/store/services/users.service";
+import * as Services from "app/modules/store/services/";
 
 import { User } from "app/models/user";
 import { Post } from "app/models/post";
@@ -68,11 +64,11 @@ export abstract class IUsersService {
   ],
   declarations: [],
   providers: [
-    {provide: IAppService, useExisting: AppService},
-    {provide: IHomeService, useExisting: HomeService},
-    {provide: IPostsService, useExisting: PostsService},
-    {provide: ITodosService, useExisting: TodosService},
-    {provide: IUsersService, useExisting: UsersService},
+    {provide: IAppService, useExisting: Services.AppService},
+    {provide: IHomeService, useExisting: Services.HomeService},
+    {provide: IPostsService, useExisting: Services.PostsService},
+    {provide: ITodosService, useExisting: Services.TodosService},
+    {provide: IUsersService, useExisting: Services.UsersService},
   ]
 })
 export class StoreInterfaceModule { 

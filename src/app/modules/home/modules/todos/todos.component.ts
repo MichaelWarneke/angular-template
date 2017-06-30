@@ -1,6 +1,6 @@
-import { Component, OnInit, OnDestroy, ChangeDetectionStrategy } from '@angular/core';
-import { IUsersService, ITodosService, IHomeService } from "app/modules/core/store.interface";
-import { Subscription } from "rxjs/Subscription";
+import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { TodosService } from "./todos.service";
+
 import { Observable } from "rxjs/Observable";
 import { User } from "app/models/user";
 import { Todo } from "app/models/todo";
@@ -8,9 +8,10 @@ import { Todo } from "app/models/todo";
 @Component({
   selector: 'app-todos',
   templateUrl: './todos.component.html',
-  styleUrls: ['./todos.component.scss']
+  styleUrls: ['./todos.component.scss'],
+  providers: [TodosService]
 })
-export class TodosComponent implements OnInit, OnDestroy {
+export class TodosComponent {
   
   users: Observable<User[]>;
   todos: Observable<Todo[]>;
@@ -19,29 +20,17 @@ export class TodosComponent implements OnInit, OnDestroy {
   loadingUsers: Observable<boolean>;
   loadingTodos: Observable<boolean>;
 
-  constructor(private userService: IUsersService,
-              private todoService: ITodosService,
-              private homeService: IHomeService) { 
-    this.users = this.userService.getFbUsers();
-    this.todos = this.todoService.getFbTodos();
+  constructor(private service: TodosService) { 
+    this.users = this.service.getFbUsers();
+    this.todos = this.service.getFbTodos();
     this.selectedUser = null;
 
-    this.loadingUsers = this.homeService.getFireLoadingUsers();
-    this.loadingTodos = this.homeService.getFireLoadingTodos();
-
-    // Load users
-    this.userService.loadFbUsers();
-  }
-
-  ngOnInit() {
-  }
-
-  ngOnDestroy() {
-
+    this.loadingUsers = this.service.getFireLoadingUsers();
+    this.loadingTodos = this.service.getFireLoadingTodos();
   }
 
   onSelectUser(id: string) {
-    this.todoService.loadFbTodos(id);
+    this.service.loadFbTodos(id);
     this.selectedUser = id;
   }
 

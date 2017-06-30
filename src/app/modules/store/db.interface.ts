@@ -3,9 +3,7 @@ import { NgModule, ModuleWithProviders } from '@angular/core';
 import { DbModule } from "app/modules/db/db.module";
 import { DbFirebaseModule } from "app/modules/db/db-firebase/db-firebase.module";
 
-import { UsersFbService } from "app/modules/db/db-firebase/services/users-fb.service";
-import { TodosFbService } from "app/modules/db/db-firebase/services/todos-fb.service";
-import { PostsFbService } from "app/modules/db/db-firebase/services/posts-fb.service";
+import * as FbService from "app/modules/db/db-firebase/services/";
 
 import { Observable } from "rxjs/Observable";
 import { User } from "app/models/user";
@@ -32,9 +30,9 @@ export abstract class IPostsFbService {
   ],
   declarations: [],
   providers: [
-    {provide: IUsersFbService, useExisting: UsersFbService},
-    {provide: ITodosFbService, useExisting: TodosFbService},
-    {provide: IPostsFbService, useExisting: PostsFbService},
+    {provide: IUsersFbService, useExisting: FbService.UsersFbService},
+    {provide: ITodosFbService, useExisting: FbService.TodosFbService},
+    {provide: IPostsFbService, useExisting: FbService.PostsFbService},
   ]
 })
 export class DbInterfaceModule { 

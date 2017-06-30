@@ -1,15 +1,17 @@
-import { Component, OnInit, OnDestroy, ChangeDetectionStrategy } from '@angular/core';
-import { IUsersService, IPostsService, IHomeService } from "app/modules/core/store.interface";
+import { Component, ChangeDetectionStrategy } from '@angular/core';
+
 import { Observable } from "rxjs/Observable";
 import { User } from "app/models/user";
 import { Post } from "app/models/post";
+import { PostsService } from "./posts.service";
 
 @Component({
   selector: 'app-posts',
   templateUrl: './posts.component.html',
-  styleUrls: ['./posts.component.scss']
+  styleUrls: ['./posts.component.scss'],
+  providers: [PostsService]
 })
-export class PostsComponent implements OnInit, OnDestroy {
+export class PostsComponent {
 
   users: Observable<User[]>;
   posts: Observable<Post[]>;
@@ -18,30 +20,20 @@ export class PostsComponent implements OnInit, OnDestroy {
   loadingUsers: Observable<boolean>;
   loadingPosts: Observable<boolean>;
 
-  constructor(private userService: IUsersService,
-              private postService: IPostsService,
-              private homeService: IHomeService) { 
-    this.users = this.userService.getFbUsers();
+  constructor(private service: PostsService) { 
+    this.users = this.service.getFbUsers();
 
-    this.posts = this.postService.getFbPosts();
-    this.selectedUser = this.homeService.getFbSelectedUserPosts();
+    this.posts = this.service.getFbPosts();
+    this.selectedUser = this.service.getFbSelectedUserPosts();
 
-    this.loadingUsers = this.homeService.getFireLoadingUsers();
-    this.loadingPosts = this.homeService.getFireLoadingPosts();
+    this.loadingUsers = this.service.getFireLoadingUsers();
+    this.loadingPosts = this.service.getFireLoadingPosts();
 
-    // Load users
-    this.userService.loadFbUsers();
-  }
 
-  ngOnInit() {
-
-  }
-
-  ngOnDestroy() {
   }
 
   onSelectUser(id: string) {
-    this.homeService.changeFbSelectedUserPosts(id);
+    this.service.changeFbSelectedUserPosts(id);
   }
 
 }

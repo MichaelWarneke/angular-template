@@ -11,3 +11,8 @@ export const FB_SERVICES = [
     TodosFbService
 //    InitFbService
 ]
+
+export { HomeFbService } from "./home-fb.service";
+export { UsersFbService } from "./users-fb.service";
+export { PostsFbService } from "./posts-fb.service";
+export { TodosFbService } from "./todos-fb.service";

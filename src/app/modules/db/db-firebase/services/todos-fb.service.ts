@@ -4,9 +4,9 @@ import { Todo } from "app/models/todo";
 import { AngularFireDatabase } from "angularfire2/database";
 
 @Injectable()
-export class TodosFbService {
+export abstract class TodosFbService {
 
-  constructor(private db: AngularFireDatabase) { }
+  constructor(protected db: AngularFireDatabase) { }
 
   getTodosByUser(key?: string): Observable<Todo[]>{
     console.log("getTodosByUser : " + key);

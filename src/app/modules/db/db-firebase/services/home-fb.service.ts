@@ -1,8 +1,5 @@
 import { Injectable } from '@angular/core';
 
 @Injectable()
-export class HomeFbService {
-
-  constructor() { }
-
+export abstract class HomeFbService {
 }

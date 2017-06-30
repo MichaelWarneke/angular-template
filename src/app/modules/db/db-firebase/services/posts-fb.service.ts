@@ -6,9 +6,9 @@ import { AngularFireDatabase } from "angularfire2/database";
 import { of } from "rxjs/observable/of";
 
 @Injectable()
-export class PostsFbService {
+export abstract class PostsFbService {
 
-  constructor(private db: AngularFireDatabase) { }
+  constructor(protected db: AngularFireDatabase) { }
 
   getPostsByUser(key: string): Observable<Post[]>{
     if(key && key != "") {

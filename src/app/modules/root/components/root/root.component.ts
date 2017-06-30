@@ -1,21 +1,20 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { Observable } from "rxjs/Observable";
-import { IAppService } from "app/modules/core/store.interface";
+import { RootService } from "./root.service";
+
 
 @Component({
   selector: 'app-root-component',
   templateUrl: './root.component.html',
-  styleUrls: ['./root.component.scss']
+  styleUrls: ['./root.component.scss'],
+  providers: [RootService]
 })
-export class RootComponent implements OnInit {
+export class RootComponent {
 
   showWaitingBar$: Observable<boolean>;
 
-  constructor(private appService: IAppService) {
-    this.showWaitingBar$ = this.appService.getShowWaitingBar();
-  }
-
-  ngOnInit() {
+  constructor(private service: RootService) {
+    this.showWaitingBar$ = this.service.getShowWaitingBar();
   }
   
   onMenuSelect(value: string) {

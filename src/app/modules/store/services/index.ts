@@ -11,3 +11,9 @@ export const SERVICES = [
     PostsService,
     TodosService
 ]
+
+export { AppService } from "./app.service";
+export { HomeService } from "./home.service";
+export { UsersService } from "./users.service";
+export { PostsService } from "./posts.service";
+export { TodosService } from "./todos.service";

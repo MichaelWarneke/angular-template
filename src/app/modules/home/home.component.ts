@@ -1,42 +1,34 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { IAppService } from "app/modules/core/store.interface";
+import { Component, ChangeDetectionStrategy } from '@angular/core';
+
 import { Observable } from "rxjs/Observable";
-import { Router } from "@angular/router";
+import { HomeService } from "./home.service";
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  styleUrls: ['./home.component.scss'],
+  providers: [HomeService]
 
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent {
   showSidenav$: Observable<boolean>;
 
-  constructor(private appService: IAppService,
-              private router: Router) { 
-    this.showSidenav$ = this.appService.getSideMenu();
-  }
-
-  ngOnInit() {
+  constructor(private service: HomeService) { 
+    this.showSidenav$ = this.service.getSideMenu();
   }
 
   onSideMenuClick(val: string) {
-    switch(val) {
-      case "OpenSidenav": this.openSidenav(); break;
-      case "CloseSidenav": this.closeSidenav(); break;
-      case "Todos": this.router.navigate(['/home/todos']); break;
-      case "Posts": this.router.navigate(['/home/posts']); break;
-    }
+    this.service.onSideMenuClick(val);
   }
   closeSidenav() {
-    this.appService.closeSideMenu();
+    this.service.closeSidenav();
   }
 
   openSidenav() {
-    this.appService.openSideMenu();
+    this.service.openSidenav();
   }
 
   toggleSidenav() {
-    this.appService.toggleSideMenu();
+    this.service.toggleSidenav();
   }  
 }

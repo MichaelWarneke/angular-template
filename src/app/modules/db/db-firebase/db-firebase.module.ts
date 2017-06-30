@@ -12,7 +12,7 @@ import { firebaseData } from '../../../../../firebase.data';
   ],
   declarations: [],
   providers: [
-    FB_SERVICES,
+    FB_SERVICES
   ]  
 })
 export class DbFirebaseModule {

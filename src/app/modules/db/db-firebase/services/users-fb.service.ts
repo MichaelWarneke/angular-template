@@ -5,9 +5,9 @@ import { AngularFireDatabase } from "angularfire2/database";
 import { of } from "rxjs/observable/of";
 
 @Injectable()
-export class UsersFbService {
+export abstract class UsersFbService {
 
-  constructor(private db: AngularFireDatabase) { }
+  constructor(protected db: AngularFireDatabase) {}
 
   getUsers(): Observable<User[]>{
       return this.db.list('/users').map(User.fromJsonList);
